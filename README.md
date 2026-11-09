@@ -41,5 +41,3 @@ ruff check .
   - tests.py — тесты
   - templates/tariffs/tariffs.html — шаблон экрана Э-01
 - docs/adr/ — архитектурные решения
-
-Ссылка на репозиторий: <вставьте ссылку после git push>
