@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Поездка{% endblock %}
+{% block content %}
+<h1>Поездка №{{ ride.pk }}: {{ ride.get_status_display }}</h1>
+<p>Тариф «{{ ride.tariff }}» · водитель {{ ride.driver.name }},
+  {{ ride.driver.car }} ({{ ride.driver.plate }})</p>
+{% if ride.status == "searching" %}
+<p>Водитель закреплён за вами. Оплатить поездку нужно до
+  {{ ride.expires_at|time:"H:i" }}. Оплата — в следующей версии.</p>
+{% endif %}
+{% endblock %}
