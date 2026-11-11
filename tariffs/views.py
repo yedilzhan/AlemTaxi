@@ -1,8 +1,9 @@
 """Слой представления: принимает запрос, вызывает сервис, отдаёт ответ."""
 
-from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.http import require_GET
+
+from config.http import json_response
 
 from . import services
 
@@ -23,8 +24,4 @@ def tariffs_page(request):
 @require_GET
 def api_tariffs(request):
     """GET /api/tariffs/ — список тарифов в формате JSON."""
-    return JsonResponse(
-        services.list_tariffs(),
-        safe=False,
-        json_dumps_params={"ensure_ascii": False},
-    )
+    return json_response(services.list_tariffs())

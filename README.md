@@ -17,6 +17,8 @@ Python 3.12, Django 5.2 (LTS), SQLite (разработка) / PostgreSQL (эк�
 python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
+python manage.py migrate
+python manage.py loaddata demo
 python manage.py runserver
 ```
 (macOS, Linux: вместо `.venv\Scripts\activate` — `source .venv/bin/activate`)

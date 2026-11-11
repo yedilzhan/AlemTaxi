@@ -1,0 +1,10 @@
+[
+  {"model": "tariffs.tariff", "pk": 1, "fields": {"name": "Эконом", "base_price": 500, "rate_per_km": 120, "is_active": true}},
+  {"model": "tariffs.tariff", "pk": 2, "fields": {"name": "Комфорт", "base_price": 700, "rate_per_km": 160, "is_active": true}},
+  {"model": "tariffs.tariff", "pk": 3, "fields": {"name": "Бизнес", "base_price": 1200, "rate_per_km": 250, "is_active": true}},
+  {"model": "drivers.driver", "pk": 1, "fields": {"name": "Ерлан", "car": "Toyota Camry", "plate": "123ABC01", "lat": 51.128, "lon": 71.430, "is_free": true}},
+  {"model": "drivers.driver", "pk": 2, "fields": {"name": "Данияр", "car": "Hyundai Sonata", "plate": "456DEF01", "lat": 51.120, "lon": 71.420, "is_free": true}},
+  {"model": "drivers.driver", "pk": 3, "fields": {"name": "Айгерим", "car": "Kia K5", "plate": "789GHI01", "lat": 51.095, "lon": 71.395, "is_free": true}},
+  {"model": "drivers.driver", "pk": 4, "fields": {"name": "Нурлан", "car": "Skoda Octavia", "plate": "321JKL01", "lat": 51.150, "lon": 71.470, "is_free": true}},
+  {"model": "drivers.driver", "pk": 5, "fields": {"name": "Сергей", "car": "Toyota Corolla", "plate": "654MNO01", "lat": 51.105, "lon": 71.410, "is_free": false}}
+]

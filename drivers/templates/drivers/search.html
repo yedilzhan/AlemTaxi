@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Водители рядом{% endblock %}
+{% block content %}
+<h1>Свободные водители</h1>
+<form method="get">
+  {{ form.as_p }}
+  <button>Найти</button>
+</form>
+{% if form.is_valid %}
+<ul>
+  {% for d in drivers %}
+  <li>Водитель №{{ d.driver_id }} — подъедет через {{ d.eta_min }} мин</li>
+  {% empty %}
+  <li>Свободных водителей рядом нет.</li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}

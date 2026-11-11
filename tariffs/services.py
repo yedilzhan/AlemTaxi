@@ -3,12 +3,7 @@
 Правила БП живут здесь, а не в представлении.
 """
 
-# Заглушка вместо базы данных. В ЛР №7 заменим на запрос к модели Tariff.
-TARIFFS = [
-    {"id": 1, "name": "Эконом", "base_price": 500, "rate_per_km": 120},
-    {"id": 2, "name": "Комфорт", "base_price": 700, "rate_per_km": 160},
-    {"id": 3, "name": "Бизнес", "base_price": 1200, "rate_per_km": 250},
-]
+from .models import Tariff
 
 # Длина поездки для примера расчёта на экране Э-01, км.
 EXAMPLE_DISTANCE_KM = 5
@@ -17,9 +12,17 @@ EXAMPLE_DISTANCE_KM = 5
 def list_tariffs():
     """Операция 1 контракта API: GET /api/tariffs/.
 
-    Возвращает список тарифов в формате {id, name, base_price, rate_per_km}.
+    Возвращает доступные тарифы в формате {id, name, base_price, rate_per_km}.
     """
-    return [dict(tariff) for tariff in TARIFFS]
+    return [
+        {
+            "id": t.id,
+            "name": t.name,
+            "base_price": t.base_price,
+            "rate_per_km": t.rate_per_km,
+        }
+        for t in Tariff.objects.filter(is_active=True)
+    ]
 
 
 def estimate_price(tariff, distance_km):
