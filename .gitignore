@@ -8,3 +8,4 @@ db.sqlite3
 .ruff_cache/
 htmlcov/
 .coverage
+db.sqlite3-journal
