@@ -28,9 +28,11 @@ class CreateRideBranchTest(TestCase):
 
     def test_integrity_error_becomes_active_ride_error(self):
         """Путь П5: гонка двух заказов — IntegrityError → ActiveRideError, откат."""
-        with patch.object(Ride.objects, "create", side_effect=IntegrityError):
-            with self.assertRaises(services.ActiveRideError):
-                services.create_ride(self.tariff, PHONE, *PICKUP, *DROPOFF)
+        with (
+            patch.object(Ride.objects, "create", side_effect=IntegrityError),
+            self.assertRaises(services.ActiveRideError),
+        ):
+            services.create_ride(self.tariff, PHONE, *PICKUP, *DROPOFF)
         self.driver.refresh_from_db()
         self.assertTrue(self.driver.is_free)  # занятие водителя откатилось
 
