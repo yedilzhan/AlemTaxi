@@ -20,3 +20,9 @@ class RideForm(forms.Form):
         label="Телефон",
         error_messages={"invalid": "Введите номер в формате +77011234567."},
     )
+
+
+class PaymentForm(forms.Form):
+    """POST /api/rides/{id}/pay/."""
+
+    payment_token = forms.CharField(max_length=100)
