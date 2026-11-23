@@ -1,0 +1,43 @@
+$ python -m coverage run --branch manage.py test
+Found 56 test(s).
+System check identified no issues (0 silenced).
+Creating test database for alias 'default'...
+
+........................................................
+----------------------------------------------------------------------
+Ran 56 tests in 0.346s
+
+OK
+Destroying test database for alias 'default'...
+
+
+$ python -m coverage report
+Name                  Stmts   Miss Branch BrPart  Cover   Missing
+-----------------------------------------------------------------
+drivers\__init__.py       0      0      0      0   100%
+drivers\admin.py          6      0      0      0   100%
+drivers\apps.py           5      0      0      0   100%
+drivers\forms.py          4      0      0      0   100%
+drivers\models.py        14      1      0      0    93%   22
+drivers\services.py      31      0      2      0   100%
+drivers\urls.py           3      0      0      0   100%
+drivers\views.py         26      0      4      1    97%   18->23
+rides\__init__.py         0      0      0      0   100%
+rides\admin.py            6      0      0      0   100%
+rides\apps.py             5      0      0      0   100%
+rides\forms.py           11      0      0      0   100%
+rides\gateway.py          3      0      0      0   100%
+rides\models.py          27      1      0      0    96%   51
+rides\services.py        76      0     18      0   100%
+rides\urls.py             3      0      0      0   100%
+rides\views.py           66      1     10      2    96%   29->35, 76
+tariffs\__init__.py       0      0      0      0   100%
+tariffs\admin.py          5      0      0      0   100%
+tariffs\apps.py           5      0      0      0   100%
+tariffs\models.py        12      0      0      0   100%
+tariffs\services.py      10      0      2      0   100%
+tariffs\urls.py           3      0      0      0   100%
+tariffs\views.py         10      0      0      0   100%
+-----------------------------------------------------------------
+TOTAL                   331      3     36      3    98%
+

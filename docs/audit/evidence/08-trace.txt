@@ -1,0 +1,8 @@
+$ python C:\Users\Yedilzhan\Desktop\taxi\tools\trace_check.py docs/lab7-report.md drivers/services.py rides/services.py tariffs/services.py
+Строк в таблице трассировки: 4; тестов в проекте: 55
+  НЕТ В ТАБЛИЦЕ исключение InvalidStatusError из rides/services.py
+  НЕТ В ТАБЛИЦЕ исключение CancelNotAllowedError из rides/services.py
+  НЕТ В ТАБЛИЦЕ исключение SessionExpiredError из rides/services.py
+  НЕТ В ТАБЛИЦЕ исключение PaymentDeclinedError из rides/services.py
+Итог: расхождений: 4
+

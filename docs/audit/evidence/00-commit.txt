@@ -1,0 +1,7 @@
+$ git rev-parse --short HEAD
+7d667bd
+
+$ git log -1 --format=%H %ci %s
+7d667bd4ce4619da2d7e0436c22981bf08421728 2026-11-17 16:55:05 +0500 merge: ветка test/uc-01
+
+Дата сбора: 2026-11-23 16:05

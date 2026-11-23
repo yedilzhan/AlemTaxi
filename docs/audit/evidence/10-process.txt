@@ -1,0 +1,10 @@
+Последние 20 коммитов; по Conventional Commits: 17 (85 %)
+Не по правилам:
+  merge: ветка test/uc-01
+  merge: ветка feature/uc-01 с первой версией UC-01
+  Update README.md
+
+git shortlog -sn:
+    22	yedilzhan
+
+Лишние файлы в репозитории: нет
