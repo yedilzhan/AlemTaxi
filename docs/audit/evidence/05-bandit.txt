@@ -1,0 +1,48 @@
+$ python -m bandit -r config tariffs drivers rides -x */migrations/*,*\migrations\*,*/test*.py,*\test*.py
+Run started:2026-11-25 02:57:01.908614+00:00
+
+Test results:
+>> Issue: [B105:hardcoded_password_string] Possible hardcoded password: 'django-insecure-dev-only-key-change-me'
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b105_hardcoded_password_string.html
+   Location: config\settings.py:8:13
+7	# Только для разработки. В эксплуатации ключ берётся из переменной окружения.
+8	SECRET_KEY = "django-insecure-..."
+9	
+
+--------------------------------------------------
+>> Issue: [B105:hardcoded_password_string] Possible hardcoded password: 'tok_declined'
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b105_hardcoded_password_string.html
+   Location: rides\gateway.py:3:17
+2	
+3	DECLINED_TOKEN = "tok_declined"  # токен, который «банк» всегда отклоняет
+4	
+
+--------------------------------------------------
+
+Code scanned:
+	Total lines of code: 591
+	Total lines skipped (#nosec): 0
+	Total potential issues skipped due to specifically being disabled (e.g., #nosec BXXX): 0
+
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0
+		Low: 2
+		Medium: 0
+		High: 0
+	Total issues (by confidence):
+		Undefined: 0
+		Low: 0
+		Medium: 2
+		High: 0
+Files skipped (0):
+[main]	INFO	profile include tests: None
+[main]	INFO	profile exclude tests: None
+[main]	INFO	cli include tests: None
+[main]	INFO	cli exclude tests: None
+[main]	INFO	running on Python 3.13.14
+
