@@ -1,3 +1,6 @@
-Django>=5.2,<5.3
-ruff>=0.6
-coverage>=7
+Django==5.2.19
+asgiref==3.13.0
+sqlparse==0.6.1
+tzdata==2026.6
+ruff==0.17.6
+coverage==7.17.4
