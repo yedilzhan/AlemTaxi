@@ -64,9 +64,9 @@ bandit B105 в rides/gateway.py:3 (DECLINED_TOKEN = "tok_declined") — ложн
 
 | № | Issue | Проверка | Результат | Статус |
 | --- | --- | --- | --- | --- |
-| НС-1 | #1 | bandit; check --deploy при DJANGO_DEBUG=0 | ЗАПОЛНИТЬ | ЗАПОЛНИТЬ |
-| НС-2 | #2 | trace_check.py | ЗАПОЛНИТЬ | ЗАПОЛНИТЬ |
-| НС-3 | #3 | pip install -r requirements.txt; pip freeze; pip-audit | ЗАПОЛНИТЬ | ЗАПОЛНИТЬ |
+| НС-1 | #2 | bandit; check --deploy при DJANGO_DEBUG=0 | ЗАПОЛНИТЬ | ЗАПОЛНИТЬ |
+| НС-2 | #3 | trace_check.py | ЗАПОЛНИТЬ | ЗАПОЛНИТЬ |
+| НС-3 | #4 | pip install -r requirements.txt; pip freeze; pip-audit | ЗАПОЛНИТЬ | ЗАПОЛНИТЬ |
 
 Регрессия: python manage.py test — ЗАПОЛНИТЬ.
 Итоговое заключение: ЗАПОЛНИТЬ.
