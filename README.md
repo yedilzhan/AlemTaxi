@@ -43,3 +43,16 @@ ruff check .
   - tests.py — тесты
   - templates/tariffs/tariffs.html — шаблон экрана Э-01
 - docs/adr/ — архитектурные решения
+
+## Переменные окружения
+- DJANGO_DEBUG: «1» (по умолчанию) — режим разработки, «0» — рабочий режим;
+- DJANGO_SECRET_KEY: обязателен при DJANGO_DEBUG=0;
+- DJANGO_ALLOWED_HOSTS: хосты через запятую.
+
+## Проверки перед слиянием в main
+python manage.py test
+ruff check .
+bandit -r config tariffs drivers rides -x "*/migrations/*,*/test*.py"
+pip-audit -r requirements.txt
+python tools/trace_check.py docs/traceability.md drivers/services.py rides/services.py tariffs/services.py
+python manage.py check --deploy  (с DJANGO_DEBUG=0 и DJANGO_SECRET_KEY)

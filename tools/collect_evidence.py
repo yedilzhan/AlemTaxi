@@ -8,6 +8,7 @@ import datetime
 import os
 import pathlib
 import re
+import secrets
 import subprocess
 import sys
 
@@ -17,22 +18,40 @@ HERE = pathlib.Path(__file__).resolve().parent
 APPS = ["config", "tariffs", "drivers", "rides"]  # каталоги с кодом проекта
 EXCLUDE = "*/migrations/*,*\\migrations\\*,*/test*.py,*\\test*.py"
 # Для чужого проекта поменяйте: таблица трассировки и файлы слоя логики
+TABLE = (
+    "docs/traceability.md"
+    if pathlib.Path("docs/traceability.md").exists()
+    else "docs/lab7-report.md"
+)
 TRACE_ARGS = [
-    "docs/lab7-report.md",
+    TABLE,
     "drivers/services.py",
     "rides/services.py",
     "tariffs/services.py",
 ]
 CONVENTIONAL = re.compile(r"^(feat|fix|docs|test|refactor|chore|style)(\(.+\))?!?: ")
 ENV = {**os.environ, "PYTHONIOENCODING": "utf-8", "PYTHONUTF8": "1"}
+# Рабочий режим для check --deploy: проект, читающий настройки из окружения, проверяется как в эксплуатации
+DEPLOY_ENV = {
+    **ENV,
+    "DJANGO_DEBUG": "0",
+    "DJANGO_SECRET_KEY": secrets.token_urlsafe(50),
+    "DJANGO_ALLOWED_HOSTS": "taxi.example.kz",
+}
 
 
-def run(cmd):
+def run(cmd, env=ENV):
     """Выполнить команду и вернуть её вывод (stdout + stderr) вместе с самой командой."""
     shown = " ".join(["python"] + cmd[1:]) if cmd[0] == PY else " ".join(cmd)
     try:
         p = subprocess.run(
-            cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", env=ENV
+            cmd,
+            check=False,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            env=env,
         )
         return f"$ {shown}\n{p.stdout}{p.stderr}\n"
     except FileNotFoundError as e:
@@ -41,7 +60,12 @@ def run(cmd):
 
 def git(*args):
     p = subprocess.run(
-        ["git", *args], capture_output=True, text=True, encoding="utf-8", errors="replace"
+        ["git", *args],
+        check=False,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
     )
     return p.stdout
 
@@ -91,7 +115,7 @@ def main():
     )
     save("05-bandit.txt", run([PY, "-m", "bandit", "-r", *APPS, "-x", EXCLUDE]))
     save("06-pip-audit.txt", run([PY, "-m", "pip_audit", "-r", "requirements.txt"]))
-    save("07-deploy.txt", run([PY, "manage.py", "check", "--deploy"]))
+    save("07-deploy.txt", run([PY, "manage.py", "check", "--deploy"], DEPLOY_ENV))
     save("08-trace.txt", run([PY, str(HERE / "trace_check.py"), *TRACE_ARGS]))
     save("09-freeze.txt", run([PY, "-m", "pip", "freeze"]))
     save("10-process.txt", process_report())
