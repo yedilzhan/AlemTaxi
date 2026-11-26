@@ -1,15 +1,29 @@
 """Настройки проекта «Такси» (Django 5.2)."""
 
+import os
 from pathlib import Path
+
+from django.core.exceptions import ImproperlyConfigured
+from django.core.management.utils import get_random_secret_key
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Только для разработки. В эксплуатации ключ берётся из переменной окружения.
-SECRET_KEY = "django-insecure-dev-only-key-change-me"
+# Секреты и режим — из переменных окружения, а не из репозитория.
+# DJANGO_DEBUG=1 (по умолчанию) — режим разработки, DJANGO_DEBUG=0 — рабочий режим.
+DEBUG = os.environ.get("DJANGO_DEBUG", "1") == "1"
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY") or (
+    get_random_secret_key() if DEBUG else ""
+)
+if not SECRET_KEY:
+    raise ImproperlyConfigured("Задайте переменную окружения DJANGO_SECRET_KEY")
 
-DEBUG = True
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
 
-ALLOWED_HOSTS = []
+# Настройки HTTPS включаются только вне режима разработки
+SECURE_SSL_REDIRECT = not DEBUG
+SESSION_COOKIE_SECURE = not DEBUG
+CSRF_COOKIE_SECURE = not DEBUG
+SECURE_HSTS_SECONDS = 0 if DEBUG else 3600
 
 INSTALLED_APPS = [
     "django.contrib.admin",

@@ -1,6 +1,7 @@
 """Учебная заглушка платёжного шлюза (внешняя система)."""
 
-DECLINED_TOKEN = "tok_declined"  # токен, который «банк» всегда отклоняет
+# Это метка для заглушки шлюза, а не секрет (ложное срабатывание bandit B105).
+DECLINED_TOKEN = "tok_declined"  # nosec B105
 
 
 def charge(payment_token):
