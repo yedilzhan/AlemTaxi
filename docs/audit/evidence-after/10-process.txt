@@ -1,0 +1,10 @@
+Последние 20 коммитов; по Conventional Commits: 17 (85 %)
+Не по правилам:
+  merge: ветка audit/fixes
+  merge: ветка audit/taxi с материалами аудита
+  merge: ветка test/uc-01
+
+git shortlog -sn:
+    36	yedilzhan
+
+Лишние файлы в репозитории: нет

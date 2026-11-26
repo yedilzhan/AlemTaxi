@@ -60,13 +60,13 @@ bandit B105 в rides/gateway.py:3 (DECLINED_TOKEN = "tok_declined") — ложн
 Аудит выполнен как самоаудит: аудитор — автор проекта, принцип независимости не соблюдён (соседняя команда не назначена). Процесс проверен по выборке (последние 20 коммитов); интервью проведено с автором. Результат pip-audit верен на 25.11.2026.
 
 ## Повторная проверка
-Коммит: ЗАПОЛНИТЬ (git rev-parse --short HEAD в audit-taxi после git pull), дата: ЗАПОЛНИТЬ
+Коммит: 83c5cc4 (git rev-parse --short HEAD в audit-taxi после git pull), дата: 2026-11-26 11:10
 
 | № | Issue | Проверка | Результат | Статус |
 | --- | --- | --- | --- | --- |
-| НС-1 | #2 | bandit; check --deploy при DJANGO_DEBUG=0 | ЗАПОЛНИТЬ | ЗАПОЛНИТЬ |
-| НС-2 | #3 | trace_check.py | ЗАПОЛНИТЬ | ЗАПОЛНИТЬ |
-| НС-3 | #4 | pip install -r requirements.txt; pip freeze; pip-audit | ЗАПОЛНИТЬ | ЗАПОЛНИТЬ |
+| НС-1 | #2 | bandit; check --deploy при DJANGO_DEBUG=0 | bandit: находок нет; check --deploy: 2 предупреждения (W005, W021, принятые риски)  | устранено |
+| НС-2 | #3 | trace_check.py | расхождений нет (8 строк таблицы)  | устранено |
+| НС-3 | #4 | pip install -r requirements.txt; pip freeze; pip-audit | pip-audit: No known vulnerabilities found; версии в requirements.txt зафиксированы точно  | устранено |
 
-Регрессия: python manage.py test — ЗАПОЛНИТЬ.
-Итоговое заключение: ЗАПОЛНИТЬ.
+Регрессия: python manage.py test — Ran 56 tests, OK; ruff check . — All checks passed.
+Итоговое заключение: НС-1, НС-2 и НС-3 устранены и подтверждены повторной проверкой; остаются принятые риски W005 и W021 и наблюдения Н-1, Н-2, ВДУ-1 (later). Версия готова к пилотному развёртыванию при условии, что DJANGO_SECRET_KEY и DJANGO_ALLOWED_HOSTS заданы в окружении.

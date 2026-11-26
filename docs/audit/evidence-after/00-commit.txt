@@ -1,0 +1,7 @@
+$ git rev-parse --short HEAD
+83c5cc4
+
+$ git log -1 --format=%H %ci %s
+83c5cc46da721ccadf488a09d736c8d4e9ed3c85 2026-11-26 11:07:35 +0500 docs: исправлены номера Issues (refs #2, #3, #4, #5)
+
+Дата сбора: 2026-11-26 11:10

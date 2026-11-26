@@ -1,0 +1,4 @@
+$ python C:\Users\Yedilzhan\Desktop\taxi\tools\trace_check.py docs/traceability.md drivers/services.py rides/services.py tariffs/services.py
+Строк в таблице трассировки: 8; тестов в проекте: 55
+Итог: расхождений нет
+
